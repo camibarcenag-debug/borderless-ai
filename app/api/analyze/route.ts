@@ -46,7 +46,7 @@ function parseOutput(rawText: string) {
       } else if (typeof val === 'object' && val !== null) {
         safe[key] = Object.values(val).join(' · ');
       } else {
-        safe[key] = FALLBACK[key];
+        safe[key] = (FALLBACK as any)[key];
       }
     }
     return safe;
