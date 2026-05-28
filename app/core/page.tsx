@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import SavedOutputs from '../components/SavedOutputs';
 
 const chapters = [
   { num: 1, title: 'The Invisible Leak', problem: 'Mexico loses 40-50% of urban water through undetected pipe leaks', user: 'Municipal utility staff', slice: 'AI translates sensor data into plain maintenance alerts', tech: 'Anomaly Detection + NLG', pays: 'Municipalities · CONAGUA', risk: 'False negatives: AI misses real leaks' },
@@ -226,6 +227,7 @@ export default function CorePage() {
         )}
 
       </div>
-    </div>
+    <SavedOutputs />
+      </div>
   );
 }
