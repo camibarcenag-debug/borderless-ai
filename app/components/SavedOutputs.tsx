@@ -41,7 +41,7 @@ export default function SavedOutputs() {
       }
 
       const data = await res.json();
-      console.log('✅ Loaded', data.length, 'saved outputs');
+      console.log('Loaded', data.length, 'saved outputs');
       setExamples(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error('Fetch error:', err);
