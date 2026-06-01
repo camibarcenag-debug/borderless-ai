@@ -326,6 +326,33 @@ export default function ResearchPage() {
           </>
         )}
 
+
+        {/* SOURCE LIST */}
+        <section>
+          <h2 className='text-orange-400 font-mono text-xs uppercase tracking-widest mb-4'>
+            Fuentes y Evidencia de Investigación
+          </h2>
+          <div className='bg-gray-900 border border-gray-800 rounded-lg p-6'>
+            <div className='grid grid-cols-1 gap-3'>
+              {[
+                { num: '01', source: 'INEGI — Estadísticas de MIPYMES en México 2024', url: 'https://www.inegi.org.mx' },
+                { num: '02', source: 'Banco Mundial — Barreras al comercio internacional para PYMES latinoamericanas', url: 'https://www.worldbank.org' },
+                { num: '03', source: 'ProMéxico / Secretaría de Economía — Programa de exportación PYME', url: 'https://www.gob.mx/se' },
+                { num: '04', source: 'Stripe Atlas — Model for simplifying legal complexity for founders', url: 'https://stripe.com/atlas' },
+                { num: '05', source: 'AlphaSense — AI document intelligence for financial analysis', url: 'https://www.alpha-sense.com' },
+                { num: '06', source: 'Faire — B2B wholesale marketplace reducing trade friction', url: 'https://www.faire.com' },
+                { num: '07', source: 'DeepL — Premium translation tool pricing and features', url: 'https://www.deepl.com' },
+                { num: '08', source: 'Flexport — Digital freight forwarding platform analysis', url: 'https://www.flexport.com' },
+              ].map((s) => (
+                <div key={s.num} className='flex items-start gap-4 border-b border-gray-800 pb-3 last:border-0 last:pb-0'>
+                  <span className='text-orange-400 font-mono text-xs mt-0.5'>{s.num}</span>
+                  <a href={s.url} target='_blank' rel='noopener noreferrer' className='text-gray-300 text-sm hover:text-orange-400 transition-colors'>{s.source}</a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* SAVED RECORDS */}
         {savedRecords.length > 0 && (
           <section>
