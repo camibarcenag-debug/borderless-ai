@@ -327,6 +327,40 @@ export default function ResearchPage() {
         )}
 
 
+
+        {/* HUMAN VALIDATION */}
+        <section>
+          <h2 className="text-orange-400 font-mono text-xs uppercase tracking-widest mb-4">
+            Conversacion de Validacion Humana
+          </h2>
+          <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 space-y-4">
+            <div className="border-l-4 border-orange-500 pl-4">
+              <p className="text-orange-400 font-mono text-xs uppercase tracking-wider mb-1">Con quien hable</p>
+              <p className="text-gray-200 text-sm leading-relaxed">Mi mama es CEO de un despacho de seguros en Mexico. Lleva mas de 15 anos manejando contratos y negociaciones con clientes y proveedores. Ha tenido clientes internacionales, incluyendo un cliente de Canada con quien tuvo que manejar documentacion en ingles para coordinar cobertura de seguros.</p>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4">
+              <p className="text-orange-400 font-mono text-xs uppercase tracking-wider mb-1">Que problema describe</p>
+              <p className="text-gray-200 text-sm leading-relaxed">Estoy construyendo una herramienta de IA que lee contratos en ingles y te explica en espanol que dice, que clausulas son riesgosas, y como responder. La idea es que un dueno de negocio entienda cualquier documento en 60 segundos sin necesitar un traductor externo.</p>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4">
+              <p className="text-orange-400 font-mono text-xs uppercase tracking-wider mb-1">Que confirmo</p>
+              <p className="text-gray-200 text-sm leading-relaxed">Dijo que el problema es completamente real. Cuando tuvo su cliente de Canada, recibio documentos en ingles con terminos tecnicos que no estaba segura de interpretar. Tuvo que pedir ayuda antes de poder responder. Dijo: No es que no entienda ingles, es que no queria cometer un error en algo con consecuencias legales para mi cliente.</p>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4">
+              <p className="text-orange-400 font-mono text-xs uppercase tracking-wider mb-1">Que cuestiono</p>
+              <p className="text-gray-200 text-sm leading-relaxed">Me pregunto como sabria el usuario si el AI se equivoco en algo importante. Tambien pregunto si la herramienta podria entender lenguaje tecnico especifico de industrias como seguros, no solo ingles general de negocios.</p>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4">
+              <p className="text-orange-400 font-mono text-xs uppercase tracking-wider mb-1">Que me sorprendio</p>
+              <p className="text-gray-200 text-sm leading-relaxed">Que no le importaba tanto la traduccion literal. Me dijo: Yo puedo usar Google Translate. Lo que no puedo hacer es saber cual parte del documento es la que me puede meter en problemas. Eso confirmo que el valor de Borderless no es traducir, es identificar riesgo.</p>
+            </div>
+            <div className="border-l-4 border-orange-500 pl-4">
+              <p className="text-orange-400 font-mono text-xs uppercase tracking-wider mb-1">Que cambie despues</p>
+              <p className="text-gray-200 text-sm leading-relaxed">Tres cosas: (1) Movi el mapa de riesgos a una posicion mas prominente. (2) Cambie el lenguaje del disclaimer para indicar exactamente que revisar con un especialista. (3) Agregue terminologia de industrias especificas al system prompt del agente.</p>
+            </div>
+          </div>
+        </section>
+
         {/* SOURCE LIST */}
         <section>
           <h2 className='text-orange-400 font-mono text-xs uppercase tracking-widest mb-4'>
