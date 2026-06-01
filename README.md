@@ -26,3 +26,15 @@ Borderless is an AI co-pilot that removes the English and Mandarin language barr
 - Generative Core Agent powered by Claude
 - Supabase save and dashboard
 - Prompt library documented at /docs
+
+## Week 2 Build
+- Research + Benchmarking Agent at /research
+- AI-powered competitive analysis in Spanish
+- 12 competitors mapped, 5 global benchmarks
+- Filter/search competitor table
+- Risk map with HIGH/MEDIUM/LOW severity
+- Saved research outputs to Supabase
+- Dashboard widget on /core linking to /research
+
+## Week 2 Live URL
+https://borderless-ai-g2ut.vercel.app/research
