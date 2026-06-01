@@ -228,6 +228,38 @@ export default function CorePage() {
 
       </div>
     <SavedOutputs />
+      <div className='max-w-5xl mx-auto px-6 pb-12'>
+        <div className='border border-orange-500/20 rounded-xl overflow-hidden'>
+          <div className='bg-gray-900 border-b border-gray-800 px-6 py-3 flex items-center justify-between'>
+            <div className='flex items-center gap-3'>
+              <span className='w-2 h-2 rounded-full bg-orange-500 animate-pulse inline-block'></span>
+              <span className='text-orange-400 font-mono text-xs tracking-widest uppercase'>Week 2 — Research + Benchmarking Agent</span>
+            </div>
+            <span className='text-gray-500 font-mono text-xs'>Live</span>
+          </div>
+          <div className='bg-gray-950 p-6 grid grid-cols-3 gap-4'>
+            <div className='bg-gray-900 rounded-lg p-4 border border-gray-800'>
+              <p className='text-orange-400 font-mono text-xs uppercase tracking-wider mb-1'>Competitors Mapped</p>
+              <p className='text-white text-2xl font-bold'>12</p>
+              <p className='text-gray-500 text-xs mt-1'>0 serve Spanish-speaking SMEs</p>
+            </div>
+            <div className='bg-gray-900 rounded-lg p-4 border border-gray-800'>
+              <p className='text-orange-400 font-mono text-xs uppercase tracking-wider mb-1'>Global Benchmarks</p>
+              <p className='text-white text-2xl font-bold'>5</p>
+              <p className='text-gray-500 text-xs mt-1'>Stripe · Faire · Kompass · QuickBooks · AlphaSense</p>
+            </div>
+            <div className='bg-gray-900 rounded-lg p-4 border border-gray-800'>
+              <p className='text-orange-400 font-mono text-xs uppercase tracking-wider mb-1'>Opportunity Gap</p>
+              <p className='text-white text-2xl font-bold'>500K+</p>
+              <p className='text-gray-500 text-xs mt-1'>Mexican SMEs unserved</p>
+            </div>
+          </div>
+          <div className='bg-gray-900 border-t border-gray-800 px-6 py-4 flex items-center justify-between'>
+            <p className='text-gray-400 text-sm'>Research + Benchmarking Agent — fully deployed and operational</p>
+            <a href='/research' className='bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs px-4 py-2 rounded-lg transition-colors'>Open Research Agent →</a>
+          </div>
+        </div>
+      </div>
       </div>
   );
 }
