@@ -27,8 +27,38 @@ const assumptions = [
 ];
 
 const INITIAL_SAVED: SavedScenario[] = [
-  { id: 0, scenario: "Esperado", profesional: 18, empresa: 3, convRate: 6, churnRate: 5, mrr: 819, arr: 9828, churnAdj: 778, savedAt: "2026-05-25 · Mes 6 documentado" },
+  { id: 0, scenario: "Esperado", profesional: 18, empresa: 3, convRate: 6, churnRate: 5, mrr: 819, arr: 9828, churnAdj: 778, savedAt: "2026-05-25 Mes 6 documentado" },
 ];
+
+const recs: Record<SK, { title: string; points: string[] }> = {
+  Conservador: {
+    title: "Enfocarse en retener los primeros 10 clientes Profesional antes de escalar.",
+    points: [
+      "Con conversion del 3%, cada cliente cuesta mas — prioriza referidos sobre ads pagados.",
+      "El churn del 8% es la amenaza principal: implementa onboarding personalizado desde el dia 1.",
+      "No lances Empresa todavia — valida el valor con PYME Exportadora primero.",
+      "Meta realista mes 6: $290 MRR. Suficiente para probar el modelo.",
+    ],
+  },
+  Esperado: {
+    title: "El tier Profesional a $29 es tu motor principal — protegelo y optimizalo.",
+    points: [
+      "Con 18 usuarios Profesional y 3 Empresa llegas a $819 MRR en mes 6. Es viable.",
+      "La conversion del 6% requiere onboarding claro: el usuario debe ver valor en 5 minutos.",
+      "El churn del 5% se controla con recordatorios de uso y casos de exito en espanol.",
+      "Siguiente palanca: subir Empresa de 3 a 6 clientes duplica el ingreso de ese tier.",
+    ],
+  },
+  Agresivo: {
+    title: "El escenario Agresivo es posible solo con un canal de adquisicion activo.",
+    points: [
+      "Conversion del 10% requiere prueba social: testimonios de PYMES reales en la landing.",
+      "Churn del 3% solo se logra con producto muy pegajoso — el historial guardado es clave.",
+      "Considera un programa de referidos: cada cliente puede traer 2 mas en este mercado.",
+      "Si llegas a $2,400 MRR en mes 6, tienes evidencia para levantar capital o expandir.",
+    ],
+  },
+};
 
 export default function PricingPage() {
   const [scenario, setScenario] = useState<SK>("Esperado");
@@ -44,11 +74,9 @@ export default function PricingPage() {
 
   useEffect(() => {
     const calcMrr = Math.round((profesional * 29) + (empresa * 99));
-    const calcArr = calcMrr * 12;
-    const calcChurnAdj = Math.round(calcMrr * (1 - churnRate / 100));
     setMrr(calcMrr);
-    setArr(calcArr);
-    setChurnAdj(calcChurnAdj);
+    setArr(calcMrr * 12);
+    setChurnAdj(Math.round(calcMrr * (1 - churnRate / 100)));
   }, [profesional, empresa, convRate, churnRate, scenario]);
 
   const applyScenario = (s: SK) => {
@@ -60,23 +88,13 @@ export default function PricingPage() {
 
   const saveScenario = () => {
     const now = new Date();
-    const label = now.toLocaleDateString("es-MX", { day: "2-digit", month: "short", year: "numeric" }) + " · " + now.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
-    const newScenario: SavedScenario = {
-      id: Date.now(),
-      scenario,
-      profesional,
-      empresa,
-      convRate,
-      churnRate,
-      mrr,
-      arr,
-      churnAdj,
-      savedAt: label,
-    };
-    setSaved((prev) => [newScenario, ...prev].slice(0, 5));
+    const label = now.toLocaleDateString("es-MX", { day: "2-digit", month: "short", year: "numeric" }) + " " + now.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
+    setSaved((prev) => [{ id: Date.now(), scenario, profesional, empresa, convRate, churnRate, mrr, arr, churnAdj, savedAt: label }, ...prev].slice(0, 5));
     setSaveMsg("Escenario guardado correctamente");
     setTimeout(() => setSaveMsg(""), 3000);
   };
+
+  const rec = recs[scenario];
 
   return (
     <main className="min-h-screen bg-[#111111] text-gray-100 font-mono">
@@ -134,7 +152,7 @@ export default function PricingPage() {
           </div>
 
           <div>
-            <p className="text-orange-500 text-xs tracking-widest uppercase mb-6">Proyeccion - Escenario {scenario}</p>
+            <p className="text-orange-500 text-xs tracking-widest uppercase mb-6">Proyeccion — Escenario {scenario}</p>
             <div className="space-y-4">
               <div className="border border-orange-700 bg-[#1a1a1a] rounded p-6">
                 <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">MRR</p>
@@ -153,8 +171,7 @@ export default function PricingPage() {
               </div>
               <div className="border border-gray-700 bg-[#1a1a1a] rounded p-4 text-xs text-gray-500">
                 <p>MRR = (Profesional x $29) + (Empresa x $99)</p>
-                <p>ARR = MRR x 12</p>
-                <p>Churn-adj = MRR x (1 - churn%)</p>
+                <p>ARR = MRR x 12 | Churn-adj = MRR x (1 - churn%)</p>
               </div>
               <button onClick={saveScenario}
                 className="w-full border border-orange-700 text-orange-400 hover:bg-orange-900/20 py-3 rounded text-sm font-bold tracking-widest transition-all">
@@ -167,6 +184,18 @@ export default function PricingPage() {
               )}
             </div>
           </div>
+        </div>
+
+        <div className="mt-10 border border-orange-700 bg-orange-900/10 rounded p-6">
+          <p className="text-orange-500 text-xs tracking-widest uppercase mb-2">Recomendacion — Escenario {scenario}</p>
+          <p className="text-white text-sm font-bold mb-4">{rec.title}</p>
+          <ul className="space-y-2">
+            {rec.points.map((point, i) => (
+              <li key={i} className="text-gray-300 text-sm flex gap-2">
+                <span className="text-orange-500 mt-0.5">›</span>{point}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-14 mb-10">
@@ -200,9 +229,7 @@ export default function PricingPage() {
           <div className="space-y-4">
             {saved.map((s) => (
               <div key={s.id} className="border border-gray-700 bg-[#161616] rounded p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs text-orange-500 border border-orange-800 px-2 py-0.5 rounded">{s.scenario} · {s.savedAt}</span>
-                </div>
+                <span className="text-xs text-orange-500 border border-orange-800 px-2 py-0.5 rounded inline-block mb-4">{s.scenario} · {s.savedAt}</span>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {[
                     { label: "Usuarios Profesional", val: String(s.profesional) },
