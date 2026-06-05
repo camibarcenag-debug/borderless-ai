@@ -38,3 +38,17 @@ Borderless is an AI co-pilot that removes the English and Mandarin language barr
 
 ## Week 2 Live URL
 https://borderless-ai-g2ut.vercel.app/research
+
+## Week 3 Build
+Product Architecture + Pricing Simulator at /product and /pricing
+3 pricing tiers: Explorador ($0), Profesional ($29), Empresa ($99)
+2 customer segments: PYME Exportadora, Despacho Aduanal
+Interactive revenue calculator with live MRR/ARR updates
+Scenario toggle: Conservador / Esperado / Agresivo
+Assumptions table and recommendation section
+Document upload feature: English PDF/DOCX → Spanish analysis with risk flags
+Save pricing scenarios dynamically
+
+## Week 3 Live URLs
+Product: https://borderless-ai-g2ut.vercel.app/product
+Pricing: https://borderless-ai-g2ut.vercel.app/pricing
