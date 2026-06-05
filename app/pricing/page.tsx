@@ -3,6 +3,19 @@ import { useState, useEffect } from "react";
 
 type SK = "Conservador" | "Esperado" | "Agresivo";
 
+interface SavedScenario {
+  id: number;
+  scenario: string;
+  profesional: number;
+  empresa: number;
+  convRate: number;
+  churnRate: number;
+  mrr: number;
+  arr: number;
+  churnAdj: number;
+  savedAt: string;
+}
+
 const assumptions = [
   { input: "Visitantes mensuales", value: "1,500", rationale: "Estimado con SEO y referidos en primeros 6 meses" },
   { input: "Signup freemium", value: "20% de visitantes", rationale: "Benchmark SaaS B2B latinoamerica" },
@@ -11,6 +24,10 @@ const assumptions = [
   { input: "Precio Empresa", value: "$99/mes", rationale: "Valor por multiples usuarios y soporte dedicado" },
   { input: "Churn mensual Profesional", value: "5% base", rationale: "Meta reducir a 3% en mes 12" },
   { input: "Churn mensual Empresa", value: "2.5% base", rationale: "Clientes mas comprometidos, mayor LTV" },
+];
+
+const INITIAL_SAVED: SavedScenario[] = [
+  { id: 0, scenario: "Esperado", profesional: 18, empresa: 3, convRate: 6, churnRate: 5, mrr: 819, arr: 9828, churnAdj: 778, savedAt: "2026-05-25 · Mes 6 documentado" },
 ];
 
 export default function PricingPage() {
@@ -22,6 +39,8 @@ export default function PricingPage() {
   const [mrr, setMrr] = useState(0);
   const [arr, setArr] = useState(0);
   const [churnAdj, setChurnAdj] = useState(0);
+  const [saved, setSaved] = useState<SavedScenario[]>(INITIAL_SAVED);
+  const [saveMsg, setSaveMsg] = useState("");
 
   useEffect(() => {
     const calcMrr = Math.round((profesional * 29) + (empresa * 99));
@@ -37,6 +56,26 @@ export default function PricingPage() {
     if (s === "Conservador") { setConvRate(3); setChurnRate(8); }
     if (s === "Esperado") { setConvRate(6); setChurnRate(5); }
     if (s === "Agresivo") { setConvRate(10); setChurnRate(3); }
+  };
+
+  const saveScenario = () => {
+    const now = new Date();
+    const label = now.toLocaleDateString("es-MX", { day: "2-digit", month: "short", year: "numeric" }) + " · " + now.toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
+    const newScenario: SavedScenario = {
+      id: Date.now(),
+      scenario,
+      profesional,
+      empresa,
+      convRate,
+      churnRate,
+      mrr,
+      arr,
+      churnAdj,
+      savedAt: label,
+    };
+    setSaved((prev) => [newScenario, ...prev].slice(0, 5));
+    setSaveMsg("Escenario guardado correctamente");
+    setTimeout(() => setSaveMsg(""), 3000);
   };
 
   return (
@@ -117,6 +156,15 @@ export default function PricingPage() {
                 <p>ARR = MRR x 12</p>
                 <p>Churn-adj = MRR x (1 - churn%)</p>
               </div>
+              <button onClick={saveScenario}
+                className="w-full border border-orange-700 text-orange-400 hover:bg-orange-900/20 py-3 rounded text-sm font-bold tracking-widest transition-all">
+                GUARDAR ESTE ESCENARIO
+              </button>
+              {saveMsg && (
+                <div className="border border-green-700 bg-green-900/20 rounded p-3 text-center">
+                  <p className="text-green-400 text-sm">{saveMsg}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -147,25 +195,31 @@ export default function PricingPage() {
         </div>
 
         <div>
-          <p className="text-orange-500 text-xs tracking-widest uppercase mb-2">Escenario guardado</p>
-          <h2 className="text-2xl font-light text-white mb-6">Ultima simulacion documentada</h2>
-          <div className="border border-gray-700 bg-[#161616] rounded p-6">
-            <p className="text-xs text-orange-500 border border-orange-800 px-2 py-0.5 rounded inline-block mb-4">Esperado - Mes 6 - PYME Exportadora</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[
-                { label: "Segmento", val: "PYME Exportadora" },
-                { label: "Usuarios Profesional", val: "18" },
-                { label: "Usuarios Empresa", val: "3" },
-                { label: "MRR", val: "$819" },
-                { label: "ARR", val: "$9,828" },
-                { label: "MRR ajustado churn", val: "$778" },
-              ].map((item) => (
-                <div key={item.label} className="border border-gray-700 rounded p-3">
-                  <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">{item.label}</p>
-                  <p className="text-white font-bold">{item.val}</p>
+          <p className="text-orange-500 text-xs tracking-widest uppercase mb-2">Escenarios guardados</p>
+          <h2 className="text-2xl font-light text-white mb-6">Simulaciones documentadas ({saved.length})</h2>
+          <div className="space-y-4">
+            {saved.map((s) => (
+              <div key={s.id} className="border border-gray-700 bg-[#161616] rounded p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs text-orange-500 border border-orange-800 px-2 py-0.5 rounded">{s.scenario} · {s.savedAt}</span>
                 </div>
-              ))}
-            </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {[
+                    { label: "Usuarios Profesional", val: String(s.profesional) },
+                    { label: "Usuarios Empresa", val: String(s.empresa) },
+                    { label: "Conversion", val: s.convRate + "%" },
+                    { label: "MRR", val: "$" + s.mrr.toLocaleString() },
+                    { label: "ARR", val: "$" + s.arr.toLocaleString() },
+                    { label: "MRR ajustado churn", val: "$" + s.churnAdj.toLocaleString() },
+                  ].map((item) => (
+                    <div key={item.label} className="border border-gray-700 rounded p-3">
+                      <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">{item.label}</p>
+                      <p className="text-white font-bold">{item.val}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
