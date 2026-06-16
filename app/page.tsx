@@ -75,7 +75,7 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-orange-500 flex items-center justify-center text-white text-sm font-medium">GB</div>
             <div>
-              <div className="text-sm font-medium text-orange-900">Gloria Bárcena</div>
+              <div className="text-sm font-medium text-orange-900">Carla Garza</div>
               <div className="text-xs text-orange-600">CEO, Despacho de Seguros — Ciudad de México</div>
             </div>
           </div>
