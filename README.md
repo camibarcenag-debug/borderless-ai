@@ -65,3 +65,23 @@ Marketing: https://borderless-ai-g2ut.vercel.app/marketing
 ## Week 4 A/B Results
 Headline winner: "Entiende cualquier contrato en ingles en 60 segundos."
 CTA winner: "Analiza tu primer contrato gratis"
+
+## Week 4 Build
+Marketing Engine + Homepage Upgrade at / and /marketing
+Homepage upgraded: hero in Spanish, value props, social proof quote, pricing preview, nav links
+/marketing page: brand system, 2 customer personas, campaign input form
+10 social posts with copy buttons (Instagram, WhatsApp, LinkedIn)
+3 video scripts: 15s, 30s, 60s with copy buttons
+14-day content calendar
+8 visual prompts for image generation with copy buttons
+A/B tester: 2 tests with winner selection
+Save campaign assets feature
+
+## Week 4 Live URLs
+Homepage: https://borderless-ai-g2ut.vercel.app
+Marketing: https://borderless-ai-g2ut.vercel.app/marketing
+
+## Week 4 A/B Test Results
+Headline winner: "Entiende cualquier contrato en ingles en 60 segundos."
+CTA winner: "Analiza tu primer contrato gratis"
+Reason: Both winners lead with user outcome, not product description.
