@@ -52,3 +52,16 @@ Save pricing scenarios dynamically
 ## Week 3 Live URLs
 Product: https://borderless-ai-g2ut.vercel.app/product
 Pricing: https://borderless-ai-g2ut.vercel.app/pricing
+
+## Week 4 Build
+Marketing Engine + Homepage Upgrade
+Homepage upgraded: hero, value props, social proof, pricing preview, nav
+/marketing: brand system, 2 personas, campaign form, 10 posts, 3 scripts, 14-day calendar, 8 visual prompts, A/B tester, save assets
+
+## Week 4 Live URLs
+Homepage: https://borderless-ai-g2ut.vercel.app
+Marketing: https://borderless-ai-g2ut.vercel.app/marketing
+
+## Week 4 A/B Results
+Headline winner: "Entiende cualquier contrato en ingles en 60 segundos."
+CTA winner: "Analiza tu primer contrato gratis"
