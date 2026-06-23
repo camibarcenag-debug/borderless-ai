@@ -1,87 +1,101 @@
-# Borderless AI
-### AI Trade Co-Pilot for Mexican SMEs
+# Borderless AI 🌍
 
-**AI-101 · Week 1 · Camila Bárcena**
+> The first AI-powered visa and relocation advisor for remote workers and digital nomads.
 
-## What is Borderless?
+**Live:** https://borderless-ai-g2ut.vercel.app
 
-Borderless is an AI co-pilot that removes the English and Mandarin language barrier for Mexican SME owners at the exact moment a trade document arrives — making global commerce usable right now, in Spanish, with risks flagged and the owner always in control.
+---
 
-## Live URL
-[https://borderless-ai.vercel.app/core](https://borderless-ai.vercel.app/core)
+## What It Does
 
-## Docs / Prompt Library
-[https://borderless-ai.vercel.app/docs](https://borderless-ai.vercel.app/docs)
+Borderless AI helps remote workers, freelancers, and founders navigate the complex world of digital nomad visas, tax residency, and international relocation — in plain language, no legal jargon.
+
+---
+
+## Weekly Build Progress
+
+### ✅ Week 5 — Public Chatbot / Guided Assistant
+**Live chat page:** https://borderless-ai-g2ut.vercel.app/chat
+
+Built a fully functional AI-powered chat assistant with:
+- 3-question animated intake flow (country, work situation, goal)
+- Claude AI responses personalized to each user's profile
+- Guardrail system — blocks harmful or out-of-scope requests before API call
+- Human checkpoint card — triggers for complex legal or tax situations
+- Thumbs up / thumbs down feedback saved to localStorage
+- Chat logs saved every 5 messages
+- Dark glassmorphism UI with animated gradient orbs
+- Deployed on Vercel with ANTHROPIC_API_KEY configured
+
+**Key commits:**
+- `feat/week5: restore full designed app/chat/page.tsx with glassmorphism UI`
+- `feat/week5: push app/api/chat/route.ts`
+- `feat/week5: push lib/supabase.ts`
+
+---
+
+### ✅ Week 4 — Marketing Page
+**Live marketing page:** https://borderless-ai-g2ut.vercel.app/marketing
+
+Built a full marketing landing page with:
+- Hero section with value proposition
+- Problem / solution framing
+- Feature highlights
+- Social proof section
+- Call to action
+- Fully responsive design
+- Deployed on Vercel
+
+---
+
+### ✅ Week 1–3 — Foundation
+**Live homepage:** https://borderless-ai-g2ut.vercel.app
+
+- Next.js 14 app directory setup
+- Tailwind CSS styling
+- Core homepage with venture concept
+- Vercel deployment pipeline
+- GitHub continuous deployment
+
+---
 
 ## Tech Stack
-- Next.js 14 (App Router)
-- Tailwind CSS
-- Anthropic Claude API (claude-sonnet-4-6)
-- Supabase
-- Vercel
 
-## Week 1 Build
-- 10-chapter book architecture
-- Chapter 6 selected as venture direction
-- Generative Core Agent powered by Claude
-- Supabase save and dashboard
-- Prompt library documented at /docs
+| Tool | Purpose |
+|---|---|
+| Next.js 14 | Framework and routing |
+| React 19 | UI components |
+| Tailwind CSS | Styling |
+| Claude API (Sonnet 4.6) | AI chat responses |
+| Supabase | Data storage |
+| Vercel | Deployment |
+| GitHub | Version control |
 
-## Week 2 Build
-- Research + Benchmarking Agent at /research
-- AI-powered competitive analysis in Spanish
-- 12 competitors mapped, 5 global benchmarks
-- Filter/search competitor table
-- Risk map with HIGH/MEDIUM/LOW severity
-- Saved research outputs to Supabase
-- Dashboard widget on /core linking to /research
+---
 
-## Week 2 Live URL
-https://borderless-ai-g2ut.vercel.app/research
+## Pages
 
-## Week 3 Build
-Product Architecture + Pricing Simulator at /product and /pricing
-3 pricing tiers: Explorador ($0), Profesional ($29), Empresa ($99)
-2 customer segments: PYME Exportadora, Despacho Aduanal
-Interactive revenue calculator with live MRR/ARR updates
-Scenario toggle: Conservador / Esperado / Agresivo
-Assumptions table and recommendation section
-Document upload feature: English PDF/DOCX → Spanish analysis with risk flags
-Save pricing scenarios dynamically
+| Page | URL | Status |
+|---|---|---|
+| Homepage | / | ✅ Live |
+| Marketing | /marketing | ✅ Live |
+| Chat Assistant | /chat | ✅ Live |
 
-## Week 3 Live URLs
-Product: https://borderless-ai-g2ut.vercel.app/product
-Pricing: https://borderless-ai-g2ut.vercel.app/pricing
+---
 
-## Week 4 Build
-Marketing Engine + Homepage Upgrade
-Homepage upgraded: hero, value props, social proof, pricing preview, nav
-/marketing: brand system, 2 personas, campaign form, 10 posts, 3 scripts, 14-day calendar, 8 visual prompts, A/B tester, save assets
+## Local Development
 
-## Week 4 Live URLs
-Homepage: https://borderless-ai-g2ut.vercel.app
-Marketing: https://borderless-ai-g2ut.vercel.app/marketing
+```bash
+git clone https://github.com/camibarcenag-debug/borderless-ai.git
+cd borderless-ai
+npm install
+cp .env.local.example .env.local
+# Add your ANTHROPIC_API_KEY to .env.local
+npm run dev
+```
 
-## Week 4 A/B Results
-Headline winner: "Entiende cualquier contrato en ingles en 60 segundos."
-CTA winner: "Analiza tu primer contrato gratis"
+Open [http://localhost:3000](http://localhost:3000)
 
-## Week 4 Build
-Marketing Engine + Homepage Upgrade at / and /marketing
-Homepage upgraded: hero in Spanish, value props, social proof quote, pricing preview, nav links
-/marketing page: brand system, 2 customer personas, campaign input form
-10 social posts with copy buttons (Instagram, WhatsApp, LinkedIn)
-3 video scripts: 15s, 30s, 60s with copy buttons
-14-day content calendar
-8 visual prompts for image generation with copy buttons
-A/B tester: 2 tests with winner selection
-Save campaign assets feature
+---
 
-## Week 4 Live URLs
-Homepage: https://borderless-ai-g2ut.vercel.app
-Marketing: https://borderless-ai-g2ut.vercel.app/marketing
-
-## Week 4 A/B Test Results
-Headline winner: "Entiende cualquier contrato en ingles en 60 segundos."
-CTA winner: "Analiza tu primer contrato gratis"
-Reason: Both winners lead with user outcome, not product description.
+*Built by Cami Bárcena — Startup Studio 2026*
