@@ -1,4 +1,5 @@
 "use client";
+import PageShell from '@/components/PageShell'
 import { useState } from "react";
 
 const brandSystem = [
@@ -110,6 +111,15 @@ export default function MarketingPage() {
   };
 
   return (
+    <PageShell
+      module="05"
+      icon="📣"
+      title="Motor de Marketing"
+      subtitle="Contenido en español para PYMES exportadoras: posts, guiones de video, calendario editorial y copys."
+      crumbs={[{ label: 'Marketing', href: '/marketing' }]}
+      nextHref="/chat"
+      nextLabel="Ir al Asesor IA →"
+    >
     <main className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       <div className="bg-white border-b border-gray-100 px-8 py-4 flex items-center gap-2">
         <span className="font-medium text-gray-900 text-sm">Borderless AI</span>
@@ -316,5 +326,6 @@ export default function MarketingPage() {
 
       </div>
     </main>
+    </PageShell>
   );
 }
