@@ -290,30 +290,117 @@ export default function DemoPage() {
         )}
       </div>
 
-      {/* ── PROOF CHECKLIST ── */}
+      {/* ── WHAT THIS VENTURE PROVES ── */}
       <div style={{ marginBottom:'52px' }}>
-        {section('🧠 Qué Demuestra Este Venture')}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(2,1fr)', gap:'10px' }}>
+        {section('🧠 Lo Que Este Venture Demuestra — 13 Requerimientos')}
+
+        <div style={{ background:OB, border:`1px solid ${OBR}`, borderRadius:'14px', padding:'18px 22px', marginBottom:'20px', display:'flex', alignItems:'center', gap:'14px' }}>
+          <span style={{ fontSize:'28px' }}>🎯</span>
+          <div>
+            <div style={{ fontSize:'14px', fontWeight:700, color:'#fff', marginBottom:'4px' }}>Este venture demuestra disciplina, construcción y explicación de un producto de IA</div>
+            <div style={{ fontSize:'13px', color:'rgba(255,255,255,0.5)', lineHeight:1.6 }}>
+              Cada uno de los 13 requerimientos del curso está cubierto en una página viva, con código real, pruebas documentadas y evidencia navegable.
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display:'flex', flexDirection:'column', gap:'10px' }}>
           {[
-            { label:'Problema claro',           val:'PYMES mexicanas pierden contratos por no entender inglés — mercado de 4.1M negocios' },
-            { label:'Usuario específico',        val:'Dueño de PYME 35–55 años, importa o exporta, sin presupuesto para traductor o abogado' },
-            { label:'Núcleo generativo',         val:'LLM multilingüe (Claude Sonnet 4.6) con prompt específico de comercio exterior mexicano' },
-            { label:'Lógica de mercado',         val:'Benchmarking vs DeepL, Google Translate, consultores y plataformas de exportación' },
-            { label:'Arquitectura de producto',  val:'10 módulos integrados, Navigation global, PageShell, API routes, localStorage + Supabase' },
-            { label:'Lógica de precios',         val:'3 tiers ($29/$49/$99) + simulador de MRR/ARR/churn con 3 escenarios' },
-            { label:'Sistema de marketing',      val:'Posts, guiones, calendario editorial y copys — todos en español para PYME exportadora' },
-            { label:'Interacción pública',       val:'Chat en español con intake, guardarraíles, checkpoint humano y panel de perfil lateral' },
-            { label:'Dashboard y evidencia',     val:'5 tabs: análisis, feedback, pruebas de usuario, pruebas de software, estado del sistema' },
-            { label:'Biblioteca de prompts',     val:'8 prompts con botón de copia, arquitectura completa y log semanal de construcción' },
-            { label:'Pruebas e iteración',       val:'5 usuarios externos, antes/después documentados, bugs identificados y corregidos' },
-            { label:'Impacto y riesgos',         val:'10 preguntas de impacto respondidas, 4 categorías de riesgo con guardarraíl implementado' },
-            { label:'Roadmap V2',                val:'6 mejoras documentadas con justificación técnica y plan de ejecución' },
-          ].map((p,i) => (
-            <div key={i} style={{ background:`${G}0.04)`, border:`1px solid ${G}0.12)`, borderRadius:'10px', padding:'12px 16px', display:'flex', gap:'10px', alignItems:'flex-start' }}>
-              <span style={{ color:'#4ade80', fontSize:'13px', marginTop:'1px', flexShrink:0 }}>✓</span>
-              <div>
-                <div style={{ fontSize:'12px', fontWeight:600, color:'#fff', marginBottom:'2px' }}>{p.label}</div>
-                <div style={{ fontSize:'11px', color:'rgba(255,255,255,0.4)', lineHeight:1.5 }}>{p.val}</div>
+            {
+              icon:'🧩', req:'Un problema claro',
+              proof:'PYMES mexicanas pierden contratos, firman malas cláusulas y pierden oportunidades porque sus documentos de comercio llegan en inglés o mandarín. 4.1 millones de negocios afectados. Sin herramienta asequible en español.',
+              link:'/core', linkLabel:'Ver /core',
+              metric:'Mercado: 4.1M PYMES mexicanas',
+            },
+            {
+              icon:'👤', req:'Un usuario objetivo específico',
+              proof:'Dueño de PYME (1–50 empleados), 35–55 años, importa materias primas o exporta productos terminados. Conoce su industria. Pierde confianza cuando llega un documento en inglés. Sin presupuesto para traductor o abogado.',
+              link:'/chat', linkLabel:'Ver /chat',
+              metric:'Usuario: Miguel, 52, importador de Guadalajara',
+            },
+            {
+              icon:'🧬', req:'Un núcleo generativo',
+              proof:'Claude Sonnet 4.6 con prompt específico de comercio exterior mexicano. No traducción genérica — inteligencia comercial contextual. Detecta Incoterms, condiciones de pago, cláusulas de riesgo y genera respuesta profesional en inglés.',
+              link:'/core', linkLabel:'Ver /core',
+              metric:'Modelo: claude-sonnet-4-6 · Prompt: comercio exterior MX',
+            },
+            {
+              icon:'🔎', req:'Lógica de mercado y benchmarking',
+              proof:'Análisis competitivo vs Google Translate (sin contexto comercial), DeepL (sin banderas de riesgo), ChatGPT genérico (sin prompt de comercio), consultores de comercio ($200+/hr) y plataformas de exportación (sin IA).',
+              link:'/research', linkLabel:'Ver /research',
+              metric:'Ventaja: único con contexto de comercio MX en español',
+            },
+            {
+              icon:'📦', req:'Arquitectura de producto',
+              proof:'10 módulos integrados con Navigation global y PageShell compartido. API routes en Next.js 14. Sistema de prompts en /api/analyze y /api/chat. localStorage para MVP + Supabase para análisis persistentes.',
+              link:'/product', linkLabel:'Ver /product',
+              metric:'Stack: Next.js 14 · Claude API · Vercel · Supabase',
+            },
+            {
+              icon:'💰', req:'Lógica de precios o valor',
+              proof:'Tres tiers: Explorador ($0/mes, 3 análisis), Profesional ($29/mes, ilimitado), Empresa ($99/mes, multi-usuario). Simulador interactivo de MRR/ARR/churn con escenarios Conservador, Esperado y Agresivo.',
+              link:'/pricing', linkLabel:'Ver /pricing',
+              metric:'ROI: un trato salvado = 3 meses de suscripción pagados',
+            },
+            {
+              icon:'📣', req:'Sistema de marketing y contenido',
+              proof:'Posts de LinkedIn, Instagram Reels, guiones de video de 15/30/60 segundos, copys de WhatsApp, calendario editorial de 30 días, estrategia de SEO en español y propuesta de valor por segmento de cliente.',
+              link:'/marketing', linkLabel:'Ver /marketing',
+              metric:'Canal principal: WhatsApp + Instagram para PYME mexicana',
+            },
+            {
+              icon:'💬', req:'Interacción pública vía chatbot',
+              proof:'Chat en español con intake de 3 preguntas (industria, importa/exporta, reto principal). Respuestas personalizadas de Claude. Panel de perfil lateral. Guardarraíles que bloquean antes de llamar a la API. Checkpoint humano para casos legales.',
+              link:'/chat', linkLabel:'Ver /chat',
+              metric:'Guardarraíl: keywords bloqueadas → API nunca llamada',
+            },
+            {
+              icon:'📊', req:'Dashboard, outputs guardados y evidencia',
+              proof:'5 tabs: Análisis Guardados (3 análisis reales con riesgos detectados) · Retroalimentación (6 ratings con tasa de satisfacción) · Pruebas de Usuario (5 externos con antes/después) · Pruebas de Software (7/7 pasan) · Estado del Sistema (9/9 módulos en verde).',
+              link:'/dashboard', linkLabel:'Ver /dashboard',
+              metric:'Satisfacción: 83% de respuestas calificadas como útiles',
+            },
+            {
+              icon:'📚', req:'Biblioteca de prompts y documentación',
+              proof:'8 prompts organizados por módulo con botón de copia individual. Arquitectura completa del sistema en monoespaciado. Log de construcción semanal color-coded por semana (Weeks 1–3, 4, 5, 6). Todo navegable en 3 tabs.',
+              link:'/docs', linkLabel:'Ver /docs',
+              metric:'8 prompts · arquitectura completa · 4 semanas documentadas',
+            },
+            {
+              icon:'🧪', req:'Pruebas de usuario e iteración',
+              proof:'5 usuarios externos probaron el sistema completo: Valentina (diseñadora freelance) · Miguel (importador 52 años) · Rodrigo (PM remoto) · Daniela (UX designer) · Carlos (fundador exportador). Cada uno con qué funcionó, qué confundió y qué cambió.',
+              link:'/dashboard', linkLabel:'Ver en Dashboard',
+              metric:'V1 → V2: 5 cambios documentados basados en feedback real',
+            },
+            {
+              icon:'🌱', req:'Impacto práctico y conciencia de riesgos',
+              proof:'10 preguntas de impacto respondidas. 4 categorías de riesgo con guardarraíl implementado: uso indebido (disclaimer obligatorio), sesgo (corredores menos documentados), incentivos (divulgación de partnerships) y privacidad (documentos no almacenados en servidor).',
+              link:'/demo', linkLabel:'Ver en Demo → Riesgos',
+              metric:'Impacto potencial: 4.1M PYMES con acceso a comercio global',
+            },
+            {
+              icon:'🔮', req:'Roadmap Versión 2',
+              proof:'6 mejoras documentadas: Carga de documentos PDF/Word · Entrada en mandarín · Tabla de comparación por corredor comercial · Supabase con cuentas de usuario · API white-label para bancos · Historial lateral de análisis. Con justificación técnica y prioridad.',
+              link:'/demo', linkLabel:'Ver en Demo → Roadmap V2',
+              metric:'Prioridad 1: carga de PDF — más solicitado en pruebas de usuario',
+            },
+          ].map((p, i) => (
+            <div key={i} style={{ background:C, border:`1px solid ${B}`, borderRadius:'12px', padding:'16px 20px', display:'flex', gap:'14px', alignItems:'flex-start' }}>
+              <div style={{ width:'38px', height:'38px', borderRadius:'10px', background:`${G}0.06)`, border:`1px solid ${G}0.15)`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'18px', flexShrink:0 }}>
+                {p.icon}
+              </div>
+              <div style={{ flex:1, minWidth:0 }}>
+                <div style={{ display:'flex', alignItems:'center', gap:'10px', marginBottom:'6px', flexWrap:'wrap' }}>
+                  <span style={{ fontSize:'13px', fontWeight:700, color:'#fff' }}>{p.req}</span>
+                  <span style={{ fontSize:'10px', color:'#4ade80', fontWeight:600 }}>✓ Demostrado</span>
+                  <a href={p.link} style={{ fontSize:'10px', color:O, background:OB, border:`1px solid ${OBR}`, padding:'2px 8px', borderRadius:'5px', textDecoration:'none', fontWeight:600, marginLeft:'auto' }}>
+                    {p.linkLabel} →
+                  </a>
+                </div>
+                <div style={{ fontSize:'13px', color:'rgba(255,255,255,0.6)', lineHeight:1.65, marginBottom:'8px' }}>{p.proof}</div>
+                <div style={{ fontSize:'11px', color:O, background:OB, padding:'4px 10px', borderRadius:'6px', display:'inline-block', fontFamily:'var(--font-geist-mono)' }}>
+                  {p.metric}
+                </div>
               </div>
             </div>
           ))}
