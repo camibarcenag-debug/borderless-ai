@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body style={{ margin: 0, minHeight: '100vh', background: '#0a0a0a', color: '#fff', fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}>
+      <body style={{ margin: 0, minHeight: '100vh', background: '#111111', color: '#fff', fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}>
         <Navigation />
         {children}
       </body>
