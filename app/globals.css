@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #111111;
+  --foreground: #ffffff;
+  --orange: #E8620A;
+  --orange-dim: rgba(232,98,10,0.12);
+  --orange-border: rgba(232,98,10,0.28);
+  --card: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.09);
 }
 
 @theme inline {
@@ -12,15 +17,29 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #111111;
+  color: #ffffff;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(232,98,10,0.3); border-radius: 4px; }
+
+/* Selection */
+::selection { background: rgba(232,98,10,0.3); color: #fff; }
+
+/* Tailwind overrides for dark theme */
+.bg-gray-950, .bg-gray-900, .bg-\[\#111111\] {
+  background-color: #111111 !important;
+}
+.bg-gray-800 { background-color: rgba(255,255,255,0.06) !important; }
+.border-gray-800, .border-gray-700 { border-color: rgba(255,255,255,0.09) !important; }
+.text-gray-400, .text-gray-300 { color: rgba(255,255,255,0.55) !important; }
+.text-gray-500 { color: rgba(255,255,255,0.35) !important; }
