@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -18,36 +17,30 @@ const links = [
 
 export default function Navigation() {
   const pathname = usePathname()
-  const [menuOpen, setMenuOpen] = useState(false)
-
   return (
     <nav style={{
       position: 'sticky', top: 0, zIndex: 100,
-      background: 'rgba(10,10,10,0.95)',
-      borderBottom: '1px solid rgba(232,98,10,0.25)',
+      background: 'rgba(17,17,17,0.97)',
+      borderBottom: '1px solid rgba(232,98,10,0.22)',
       backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
     }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '54px' }}>
-
-        {/* Logo */}
+      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '52px' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', flexShrink: 0 }}>
-          <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'linear-gradient(135deg,#E8620A,#f59e0b)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '15px', color: '#fff', letterSpacing: '-0.02em' }}>B</div>
+          <div style={{ width: '30px', height: '30px', borderRadius: '7px', background: 'linear-gradient(135deg,#E8620A,#f59e0b)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '14px', color: '#fff' }}>B</div>
           <span style={{ fontWeight: 700, fontSize: '15px', color: '#fff', letterSpacing: '-0.02em' }}>Borderless</span>
-          <span style={{ fontSize: '10px', background: 'rgba(232,98,10,0.15)', color: '#E8620A', border: '1px solid rgba(232,98,10,0.35)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500 }}>Beta</span>
+          <span style={{ fontSize: '10px', background: 'rgba(232,98,10,0.15)', color: '#E8620A', border: '1px solid rgba(232,98,10,0.3)', padding: '2px 8px', borderRadius: '20px', fontWeight: 500 }}>Beta</span>
         </Link>
-
-        {/* Links */}
-        <div style={{ display: 'flex', gap: '2px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+        <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
           {links.map(l => {
             const active = pathname === l.href
             return (
               <Link key={l.href} href={l.href} style={{
                 fontSize: '12px', padding: '5px 10px', borderRadius: '6px', textDecoration: 'none', whiteSpace: 'nowrap',
-                color: active ? '#E8620A' : 'rgba(255,255,255,0.5)',
+                color: active ? '#E8620A' : 'rgba(255,255,255,0.45)',
                 background: active ? 'rgba(232,98,10,0.1)' : 'transparent',
-                border: active ? '1px solid rgba(232,98,10,0.3)' : '1px solid transparent',
+                border: active ? '1px solid rgba(232,98,10,0.28)' : '1px solid transparent',
                 fontWeight: active ? 600 : 400,
-                transition: 'all 0.15s',
               }}>
                 {l.label}
               </Link>
