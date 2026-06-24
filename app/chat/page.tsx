@@ -622,7 +622,7 @@ export default function ChatPage() {
         style={{
           minHeight: '100vh',
           height: '100vh',
-          background: 'linear-gradient(135deg,#0d0f1c 0%,#12102a 45%,#1a0d2e 75%,#0d1528 100%)',
+          background: '#111111',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
