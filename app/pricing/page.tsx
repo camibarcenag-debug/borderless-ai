@@ -1,4 +1,5 @@
 "use client";
+import PageShell from '@/components/PageShell'
 import { useState, useEffect } from "react";
 
 type SK = "Conservador" | "Esperado" | "Agresivo";
@@ -97,7 +98,16 @@ export default function PricingPage() {
   const rec = recs[scenario];
 
   return (
-    <main className="min-h-screen bg-[#111111] text-gray-100 font-mono">
+    <PageShell
+      module="04"
+      icon="💰"
+      title="Simulador de Precios"
+      subtitle="Simulación de MRR, ARR y churn con tres escenarios: Conservador, Esperado y Agresivo."
+      crumbs={[{ label: 'Precios', href: '/pricing' }]}
+      nextHref="/marketing"
+      nextLabel="Ir a Marketing →"
+    >
+    <main style={{ background: "transparent", color: "#fff" }}>
       <div className="border-b border-gray-800 px-8 py-5 flex items-center gap-3">
         <span className="text-orange-500 font-bold tracking-widest text-sm">BORDERLESS AI</span>
         <span className="text-gray-600">·</span>
@@ -252,5 +262,6 @@ export default function PricingPage() {
 
       </div>
     </main>
+    </PageShell>
   );
 }
