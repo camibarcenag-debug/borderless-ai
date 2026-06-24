@@ -23,9 +23,9 @@ const storage = {
 //  TYPES
 // ─────────────────────────────────────────────
 interface IntakeData {
-  country: string
-  workType: string
-  goal: string
+  industry: string
+  tradeType: string
+  challenge: string
 }
 
 interface Message {
@@ -47,28 +47,28 @@ interface HistoryItem {
 // ─────────────────────────────────────────────
 function IntakeFlow({ onComplete }: { onComplete: (data: IntakeData) => void }) {
   const [step, setStep] = useState(0)
-  const [country, setCountry] = useState('')
-  const [workType, setWorkType] = useState('')
+  const [industry, setIndustry] = useState('')
+  const [tradeType, setTradeType] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (step === 0) inputRef.current?.focus()
   }, [step])
 
-  const handleCountry = () => {
-    if (country.trim().length > 0) setStep(1)
+  const handleIndustry = () => {
+    if (industry.trim().length > 0) setStep(1)
   }
 
-  const handleWorkType = (val: string) => {
-    setWorkType(val)
+  const handleTradeType = (val: string) => {
+    setTradeType(val)
     setStep(2)
   }
 
-  const handleGoal = (val: string) => {
-    setTimeout(() => onComplete({ country: country.trim(), workType, goal: val }), 300)
+  const handleChallenge = (val: string) => {
+    setTimeout(() => onComplete({ industry: industry.trim(), tradeType, challenge: val }), 300)
   }
 
-  const steps = ['Where you live', 'Work situation', 'Your goal']
+  const steps = ['Tu industria', 'Importas o exportas', 'Tu reto principal']
 
   return (
     <div
@@ -122,34 +122,34 @@ function IntakeFlow({ onComplete }: { onComplete: (data: IntakeData) => void }) 
       <div style={{ width: '100%', maxWidth: '400px' }}>
         {step === 0 && (
           <div className="intake-card">
-            <div className="intake-q-label">Question 1 of 3</div>
-            <div className="intake-q-text">Where do you currently live?</div>
+            <div className="intake-q-label">Pregunta 1 de 3</div>
+            <div className="intake-q-text">¿En qué industria trabaja tu negocio?</div>
             <input
               ref={inputRef}
               type="text"
-              value={country}
-              onChange={e => setCountry(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleCountry()}
-              placeholder="e.g. Mexico City, Mexico"
+              value={industry}
+              onChange={e => setIndustry(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleIndustry()}
+              placeholder="Ej. textiles, alimentos, maquinaria, artesanías..."
               className="intake-text-input"
             />
             <button
-              onClick={handleCountry}
-              disabled={!country.trim()}
+              onClick={handleIndustry}
+              disabled={!industry.trim()}
               className="intake-primary-btn"
             >
-              Continue →
+              Continuar →
             </button>
           </div>
         )}
 
         {step === 1 && (
           <div className="intake-card">
-            <div className="intake-q-label">Question 2 of 3</div>
-            <div className="intake-q-text">What is your work situation?</div>
+            <div className="intake-q-label">Pregunta 2 de 3</div>
+            <div className="intake-q-text">¿Tu negocio importa o exporta?</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {['Remote Employee', 'Freelancer', 'Founder / Entrepreneur'].map(opt => (
-                <button key={opt} onClick={() => handleWorkType(opt)} className="intake-option-btn">
+              {['Importo productos o materias primas', 'Exporto productos o servicios', 'Ambos — importo y exporto', 'Estoy evaluando comenzar a exportar'].map(opt => (
+                <button key={opt} onClick={() => handleTradeType(opt)} className="intake-option-btn">
                   {opt}
                 </button>
               ))}
@@ -159,11 +159,11 @@ function IntakeFlow({ onComplete }: { onComplete: (data: IntakeData) => void }) 
 
         {step === 2 && (
           <div className="intake-card">
-            <div className="intake-q-label">Question 3 of 3</div>
-            <div className="intake-q-text">What is your main goal?</div>
+            <div className="intake-q-label">Pregunta 3 de 3</div>
+            <div className="intake-q-text">¿Cuál es tu reto principal en comercio exterior?</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {['Find the right visa', 'Optimize my taxes', 'Plan my relocation', 'All of the above'].map(opt => (
-                <button key={opt} onClick={() => handleGoal(opt)} className="intake-option-btn">
+              {['Entender contratos y documentos en inglés', 'Negociar con proveedores extranjeros', 'Entender términos de embarque (Incoterms)', 'Revisar cláusulas de riesgo antes de firmar'].map(opt => (
+                <button key={opt} onClick={() => handleChallenge(opt)} className="intake-option-btn">
                   {opt}
                 </button>
               ))}
@@ -329,7 +329,7 @@ function TypingDots() {
 // ─────────────────────────────────────────────
 export default function ChatPage() {
   const [intakeDone, setIntakeDone] = useState(false)
-  const [intakeData, setIntakeData] = useState<IntakeData>({ country: '', workType: '', goal: '' })
+  const [intakeData, setIntakeData] = useState<IntakeData>({ industry: '', tradeType: '', challenge: '' })
   const [messages, setMessages] = useState<Message[]>([])
   const [history, setHistory] = useState<HistoryItem[]>([])
   const [input, setInput] = useState('')
@@ -348,7 +348,7 @@ export default function ChatPage() {
     const welcome: Message = {
       id: 'welcome-' + Date.now(),
       role: 'assistant',
-      content: `Welcome! 🌍 I'm your Borderless AI advisor.\n\nYou're a ${data.workType.toLowerCase()} based in ${data.country}, and you want to ${data.goal.toLowerCase()}. I've got you.\n\nI can help you find the right visa, understand tax residency rules, compare countries, and plan your move — all in plain language, no legal jargon.\n\nWhat's your first question?`,
+      content: `¡Bienvenido! 🌎 Soy tu asesor de comercio exterior de Borderless.\n\nSé que trabajas en ${data.industry} y que ${data.tradeType.toLowerCase()}. Tu reto principal es: ${data.challenge.toLowerCase()}.\n\nPuedo ayudarte a entender contratos en inglés, términos de embarque, condiciones de pago, cláusulas de riesgo y mucho más — todo en español claro, sin jerga legal.\n\n¿Cuál es tu primera pregunta?`,
       type: 'response',
       feedback: null,
     }
@@ -756,7 +756,7 @@ export default function ChatPage() {
                 {/* Avatar + name */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', paddingBottom: '16px', borderBottom: '1px solid rgba(139,92,246,0.15)' }}>
                   <div style={{ width: '52px', height: '52px', borderRadius: '50%', background: 'linear-gradient(135deg,#7c3aed,#06b6d4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: 800, color: '#fff' }}>
-                    {intakeData.country.charAt(0).toUpperCase()}
+                    {intakeData.industry.charAt(0).toUpperCase()}
                   </div>
                   <div style={{ textAlign: 'center' }}>
                     <div style={{ fontSize: '13px', fontWeight: 600, color: '#e2d9f3' }}>Tu perfil</div>
@@ -773,17 +773,17 @@ export default function ChatPage() {
 
                 <div style={{ background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: '10px', padding: '10px 12px' }}>
                   <div style={{ fontSize: '10px', color: 'rgba(226,217,243,0.45)', marginBottom: '4px' }}>📍 Ubicación</div>
-                  <div style={{ fontSize: '12px', color: '#e2d9f3', fontWeight: 500 }}>{intakeData.country}</div>
+                  <div style={{ fontSize: '12px', color: '#e2d9f3', fontWeight: 500 }}>{intakeData.industry}</div>
                 </div>
 
                 <div style={{ background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: '10px', padding: '10px 12px' }}>
                   <div style={{ fontSize: '10px', color: 'rgba(226,217,243,0.45)', marginBottom: '4px' }}>💼 Situación</div>
-                  <div style={{ fontSize: '12px', color: '#e2d9f3', fontWeight: 500 }}>{intakeData.workType}</div>
+                  <div style={{ fontSize: '12px', color: '#e2d9f3', fontWeight: 500 }}>{intakeData.tradeType}</div>
                 </div>
 
                 <div style={{ background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: '10px', padding: '10px 12px' }}>
                   <div style={{ fontSize: '10px', color: 'rgba(226,217,243,0.45)', marginBottom: '4px' }}>🎯 Objetivo</div>
-                  <div style={{ fontSize: '12px', color: '#e2d9f3', fontWeight: 500 }}>{intakeData.goal}</div>
+                  <div style={{ fontSize: '12px', color: '#e2d9f3', fontWeight: 500 }}>{intakeData.challenge}</div>
                 </div>
 
                 {/* Stats */}
@@ -808,7 +808,7 @@ export default function ChatPage() {
 
                 {/* Reset button */}
                 <button
-                  onClick={() => { setIntakeDone(false); setMessages([]); setHistory([]); setInput('') }}
+                  onClick={() => { setIntakeDone(false); setMessages([]); setHistory([]); setInput(''); setIntakeData({ industry: '', tradeType: '', challenge: '' }) }}
                   style={{ background: 'transparent', border: '1px solid rgba(139,92,246,0.25)', borderRadius: '8px', padding: '7px', fontSize: '11px', color: 'rgba(226,217,243,0.4)', cursor: 'pointer', textAlign: 'center' }}
                 >
                   Nueva sesión →
@@ -838,7 +838,7 @@ export default function ChatPage() {
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                    placeholder="Ask about visas, taxes, relocation..."
+                    placeholder="Pregunta sobre contratos, embarques, Incoterms, negociación..."
                     disabled={isLoading}
                     style={{
                       flex: 1,
