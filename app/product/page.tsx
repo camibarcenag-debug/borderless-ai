@@ -1,4 +1,5 @@
 "use client";
+import PageShell from '@/components/PageShell'
 import { useState, useRef } from "react";
 
 const tiers = [
@@ -57,7 +58,16 @@ export default function ProductPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#111111] text-gray-100 font-mono">
+    <PageShell
+      module="03"
+      icon="📦"
+      title="Arquitectura de Producto"
+      subtitle="Tres tiers de pricing, mapa de funcionalidades, integraciones bancarias y modelo de distribución."
+      crumbs={[{ label: 'Producto', href: '/product' }]}
+      nextHref="/pricing"
+      nextLabel="Ir a Precios →"
+    >
+    <main style={{ background: "transparent", color: "#fff" }}>
       <div className="border-b border-gray-800 px-8 py-5 flex items-center gap-3">
         <span className="text-orange-500 font-bold tracking-widest text-sm">BORDERLESS AI</span>
         <span className="text-gray-600">·</span>
@@ -217,5 +227,6 @@ export default function ProductPage() {
         )}
       </div>
     </main>
+    </PageShell>
   );
 }
