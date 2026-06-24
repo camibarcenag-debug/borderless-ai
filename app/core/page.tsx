@@ -1,4 +1,5 @@
 'use client';
+import PageShell from '@/components/PageShell'
 
 import { useState } from 'react';
 import SavedOutputs from '../components/SavedOutputs';
@@ -98,7 +99,16 @@ export default function CorePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <PageShell
+      module="01"
+      icon="🧬"
+      title="Núcleo Generativo"
+      subtitle="Pega un documento en inglés — resumen, términos clave, banderas de riesgo y respuesta en español en 30 segundos."
+      crumbs={[{ label: 'Núcleo Generativo', href: '/core' }]}
+      nextHref="/research"
+      nextLabel="Ir a Investigación →"
+    >
+    <div style={{ background: "transparent" }}>
 
       {/* HEADER */}
       <div className="bg-gray-950 border-b border-gray-800 px-6 py-5">
@@ -261,6 +271,7 @@ export default function CorePage() {
         </div>
       </div>
       </div>
+    </PageShell>
   );
 }
 
