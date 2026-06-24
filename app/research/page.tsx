@@ -1,4 +1,5 @@
 'use client';
+import PageShell from '@/components/PageShell'
 
 import { useState, useEffect } from 'react';
 
@@ -120,7 +121,16 @@ export default function ResearchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <PageShell
+      module="02"
+      icon="🔎"
+      title="Investigación y Benchmarking"
+      subtitle="Análisis competitivo vs Google Translate, DeepL y consultores. Brecha de mercado para PYME mexicana exportadora."
+      crumbs={[{ label: 'Investigación', href: '/research' }]}
+      nextHref="/product"
+      nextLabel="Ir a Producto →"
+    >
+    <div style={{ background: "transparent" }}>
 
       {/* HEADER */}
       <div className="border-b border-gray-800 px-6 py-4 flex items-center justify-between">
@@ -409,5 +419,6 @@ export default function ResearchPage() {
 
       </div>
     </div>
+    </PageShell>
   );
 }
